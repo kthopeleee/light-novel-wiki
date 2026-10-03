@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "novels": [
+    {
+      "id": "lantern-archive",
+      "title": "The Lantern Archive",
+      "author": "Sample Author",
+      "sample": true,
+      "status": "completed",
+      "genres": ["Fantasy", "Academy", "Mystery", "Found family"],
+      "premise": "Alice Kim transfers to Vell Academy on a scholarship she never applied for. The academy's lanterns hold the memories of everyone who has carried them, and Alice is the only student who can read them.",
+      "chapterCount": 60,
+      "updatedAt": "2026-10-03T12:00:00Z"
+    },
+    {
+      "id": "night-shift",
+      "title": "Night Shift at the Last Store",
+      "author": "Sample Author",
+      "sample": true,
+      "status": "ongoing",
+      "genres": ["Post-apocalyptic", "Comedy", "Slice of life", "Mystery"],
+      "premise": "After the Quiet empties the city overnight, store manager Alice Kim keeps her 24-hour convenience store open anyway. Her customers now include scavengers, a talking crow, and someone who only shops after 3 a.m.",
+      "chapterCount": 24,
+      "updatedAt": "2026-10-02T09:30:00Z"
+    }
+  ]
+}

@@ -1,0 +1,174 @@
+{
+  "schemaVersion": 1,
+  "id": "night-shift",
+  "title": "Night Shift at the Last Store",
+  "author": "Sample Author",
+  "sourceType": "web",
+  "visibility": "public",
+  "sample": true,
+  "status": "ongoing",
+  "genres": ["Post-apocalyptic", "Comedy", "Slice of life", "Mystery"],
+  "premise": "After the Quiet empties the city overnight, store manager Alice Kim keeps her 24-hour convenience store open anyway. Her customers now include scavengers, a talking crow, and someone who only shops after 3 a.m.",
+  "plotOverview": "Alice runs the Last Store with her new hire Ren Okafor, trading instant noodles for batteries and gossip. Every shift brings a stranger customer, and the store's old price gun starts printing what things are really worth.\n\nWhen the Scavenger Union pressures Alice to hand over the store's generator, she and Ren start piecing together what the Quiet actually was.",
+  "majorSpoilers": [
+    {
+      "title": "The 3 a.m. customer is the store's previous owner",
+      "description": "The polite figure in the raincoat is the man who hired Alice years ago, changed by the Quiet. He still checks on the store every night.",
+      "chapter": 19
+    }
+  ],
+  "chapterCount": 24,
+  "characters": [
+    {
+      "id": "alice-kim",
+      "name": "Alice Kim",
+      "aliases": ["Manager Kim", "Boss"],
+      "role": "protagonist",
+      "description": "Manager of the Last Store, who refuses to close just because the world ended. Runs on coffee and store policy.",
+      "firstAppearance": 1,
+      "relationships": [
+        { "target": "ren-okafor", "type": "new hire" },
+        { "target": "tobias", "type": "favorite regular" },
+        { "target": "dana-cole", "type": "rival" },
+        { "target": "late-customer", "type": "strangest customer" },
+        { "target": "late-customer", "type": "former boss", "spoiler": true }
+      ]
+    },
+    {
+      "id": "ren-okafor",
+      "name": "Ren Okafor",
+      "aliases": ["Ren", "the New Guy"],
+      "role": "main",
+      "description": "A nervous college student who took the night-shift job the day before the Quiet.",
+      "firstAppearance": 1,
+      "relationships": [{ "target": "alice-kim", "type": "boss" }]
+    },
+    {
+      "id": "tobias",
+      "name": "Old Tobias",
+      "aliases": ["Tobias", "Grandpa T"],
+      "role": "supporting",
+      "description": "A retired mail carrier who still delivers letters nobody can send, and buys the same soup every night.",
+      "firstAppearance": 2,
+      "relationships": [{ "target": "alice-kim", "type": "store manager" }]
+    },
+    {
+      "id": "dana-cole",
+      "name": "Dana Cole",
+      "aliases": ["Boss Cole"],
+      "role": "antagonist",
+      "description": "Leader of the Scavenger Union, who wants the store's rooftop generator.",
+      "firstAppearance": 6,
+      "affiliations": ["scavenger-union"],
+      "relationships": [{ "target": "alice-kim", "type": "rival" }]
+    },
+    {
+      "id": "late-customer",
+      "name": "The 3 a.m. Customer",
+      "aliases": ["the Late One"],
+      "role": "supporting",
+      "description": "A polite figure in a raincoat who only shops after 3 a.m. and always pays in exact change.",
+      "firstAppearance": 4,
+      "relationships": [
+        { "target": "alice-kim", "type": "cashier" },
+        { "target": "alice-kim", "type": "former employee", "spoiler": true }
+      ],
+      "spoilers": ["He is the store's previous owner, changed by the Quiet."]
+    },
+    {
+      "id": "receipt",
+      "name": "Receipt",
+      "aliases": ["the crow"],
+      "role": "minor",
+      "description": "A crow that learned to say \"paper or plastic\" and now lives on the roof.",
+      "firstAppearance": 3
+    }
+  ],
+  "locations": [
+    {
+      "id": "last-store",
+      "name": "The Last Store",
+      "description": "A 24-hour convenience store on Fifth and Alder, still lit by its rooftop generator.",
+      "firstAppearance": 1
+    },
+    {
+      "id": "alder-street",
+      "name": "Alder Street",
+      "description": "The empty street outside the store, where scavengers trade on weekends.",
+      "firstAppearance": 2
+    }
+  ],
+  "factions": [
+    {
+      "id": "scavenger-union",
+      "name": "Scavenger Union",
+      "leader": "dana-cole",
+      "description": "A loose crew of scavengers who control most of the city's fuel.",
+      "firstAppearance": 6
+    }
+  ],
+  "items": [
+    {
+      "id": "price-gun",
+      "name": "The Price Gun",
+      "kind": "artifact",
+      "owner": "alice-kim",
+      "description": "A label gun that prints what an item is really worth, not what it costs.",
+      "firstAppearance": 5
+    },
+    {
+      "id": "rooftop-generator",
+      "name": "Rooftop Generator",
+      "kind": "item",
+      "description": "The reason the store still has lights, and the reason everyone wants it.",
+      "firstAppearance": 1
+    }
+  ],
+  "glossary": [
+    {
+      "id": "the-quiet",
+      "name": "The Quiet",
+      "description": "The night the city emptied without a sound. Nobody agrees on what happened.",
+      "firstAppearance": 1
+    },
+    {
+      "id": "exact-change",
+      "name": "Exact Change",
+      "description": "Store slang for a customer you shouldn't ask questions about.",
+      "firstAppearance": 8
+    }
+  ],
+  "arcs": [
+    {
+      "id": "opening-hours",
+      "name": "Opening Hours",
+      "chapterStart": 1,
+      "chapterEnd": 12,
+      "summary": "Alice and Ren learn to run the store after the Quiet and meet their strangest regulars."
+    },
+    {
+      "id": "inventory-day",
+      "name": "Inventory Day",
+      "chapterStart": 13,
+      "chapterEnd": 24,
+      "summary": "The Scavenger Union makes its offer, and the price gun starts labeling things that aren't for sale.",
+      "spoilers": ["Ren finds the previous owner's logbook in the stockroom."]
+    }
+  ],
+  "chapters": [
+    { "number": 1, "title": "Still Open", "summary": "The city goes quiet overnight. Alice unlocks the store at 6 a.m. anyway." },
+    { "number": 5, "title": "Price Check", "summary": "The price gun tags a can of soup as \"one good memory.\"" },
+    { "number": 13, "title": "The Offer", "summary": "Dana Cole offers Alice fuel for life in exchange for the generator." },
+    { "number": 24, "title": "Inventory", "summary": "Alice and Ren count the stockroom and find something that was never ordered." }
+  ],
+  "timeline": [
+    { "chapter": 1, "title": "The Quiet; Alice keeps the store open" },
+    { "chapter": 4, "title": "The 3 a.m. customer's first visit" },
+    { "chapter": 6, "title": "Dana Cole visits the store" },
+    { "chapter": 13, "title": "The Scavenger Union's offer" },
+    { "chapter": 19, "title": "The 3 a.m. customer is identified", "spoiler": true }
+  ],
+  "generatedBy": { "provider": "manual" },
+  "createdAt": "2026-10-02T09:30:00Z",
+  "updatedAt": "2026-10-02T09:30:00Z"
+}

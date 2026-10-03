@@ -1,0 +1,23 @@
+{
+  "name": "light-novel-wiki",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "npm run dev -w @lnw/viewer",
+    "build": "npm run build -w @lnw/viewer",
+    "preview": "npm run preview -w @lnw/viewer",
+    "validate": "npm run validate -w @lnw/schema",
+    "typecheck": "npm run typecheck --workspaces --if-present"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "tsx": "^4.20.0",
+    "typescript": "~5.9.2"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

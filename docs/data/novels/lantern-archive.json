@@ -1,0 +1,293 @@
+{
+  "schemaVersion": 1,
+  "id": "lantern-archive",
+  "title": "The Lantern Archive",
+  "author": "Sample Author",
+  "sourceType": "web",
+  "visibility": "public",
+  "sample": true,
+  "status": "completed",
+  "genres": ["Fantasy", "Academy", "Mystery", "Found family"],
+  "premise": "Alice Kim transfers to Vell Academy on a scholarship she never applied for. The academy's lanterns hold the memories of everyone who has carried them, and Alice is the only student who can read them.",
+  "plotOverview": "Alice is assigned to the Lantern Archive under Professor Oren Hale, where she learns to read memories safely and starts noticing gaps in the academy's records.\n\nWith her roommate Juno Park and the rule-bound prefect Theo Marsh, she follows those gaps into a conflict between the academy council and the Lamplighters' Guild, and toward a sealed wing beneath the archive that no map admits exists.",
+  "majorSpoilers": [
+    {
+      "title": "Ms. Lune is Alice's mother",
+      "description": "The traveling lamplighter who keeps crossing Alice's path is her mother, Selene Kim, living under a false name. She arranged Alice's scholarship so Alice would find the Night Wing.",
+      "chapter": 47
+    },
+    {
+      "title": "Professor Hale erased his own memories",
+      "description": "Hale poured his memories of the Night Wing into a lantern and sealed it away, so the council could never question him about it.",
+      "chapter": 41
+    },
+    {
+      "title": "Councillor Voss sealed the Night Wing",
+      "description": "Twenty years ago Voss sealed the wing to hide the founders' lantern, which proves the council broke the academy's charter.",
+      "chapter": 52
+    }
+  ],
+  "ending": "At the council hearing, Alice reads the founders' lantern aloud and proves the council hid the academy's history. Voss is removed and arrested, the Night Wing is reopened to students, and Alice becomes the youngest keeper of the Lantern Archive, with her mother finally beside her.",
+  "chapterCount": 60,
+  "characters": [
+    {
+      "id": "alice-kim",
+      "name": "Alice Kim",
+      "aliases": ["Alice", "Miss Kim", "the Reader"],
+      "role": "protagonist",
+      "description": "A scholarship transfer student who can read the memories stored in lanterns. Quiet and stubborn, she keeps a notebook of every memory she reads.",
+      "firstAppearance": 1,
+      "affiliations": ["vell-academy"],
+      "relationships": [
+        { "target": "juno-park", "type": "roommate & best friend" },
+        { "target": "theo-marsh", "type": "rival, later ally", "description": "They argue about every rule until the Night Wing forces them to trust each other." },
+        { "target": "oren-hale", "type": "mentor" },
+        { "target": "maren-voss", "type": "enemy" },
+        { "target": "ms-lune", "type": "mother", "spoiler": true, "description": "Ms. Lune is Alice's mother, hiding under a false name." }
+      ],
+      "spoilers": ["Her scholarship was arranged by her mother."],
+      "fate": "Becomes the new keeper of the Lantern Archive."
+    },
+    {
+      "id": "juno-park",
+      "name": "Juno Park",
+      "aliases": ["Juno"],
+      "role": "main",
+      "description": "Alice's roommate, an alchemy student who talks too fast and fixes everything with glue.",
+      "firstAppearance": 2,
+      "affiliations": ["vell-academy"],
+      "relationships": [
+        { "target": "alice-kim", "type": "best friend" },
+        { "target": "theo-marsh", "type": "cousin" }
+      ]
+    },
+    {
+      "id": "theo-marsh",
+      "name": "Theo Marsh",
+      "aliases": ["Prefect Marsh", "Theo"],
+      "role": "main",
+      "description": "A third-year prefect who enforces every rule and is suspicious of Alice from the day she arrives.",
+      "firstAppearance": 3,
+      "affiliations": ["vell-academy"],
+      "relationships": [
+        { "target": "alice-kim", "type": "rival, later ally" },
+        { "target": "juno-park", "type": "cousin" },
+        { "target": "maren-voss", "type": "sponsor", "description": "Voss sponsored his appointment as prefect." }
+      ],
+      "fate": "Turns down a seat on the new council to keep working in the archive."
+    },
+    {
+      "id": "oren-hale",
+      "name": "Oren Hale",
+      "aliases": ["Professor Hale", "the Archivist"],
+      "role": "supporting",
+      "description": "The academy's archivist and Alice's supervisor. Kind, forgetful, and fiercely protective of the archive.",
+      "firstAppearance": 1,
+      "affiliations": ["vell-academy"],
+      "relationships": [
+        { "target": "alice-kim", "type": "student" },
+        { "target": "ms-lune", "type": "former student", "spoiler": true }
+      ],
+      "spoilers": ["He erased his own memories of the Night Wing to protect it."]
+    },
+    {
+      "id": "maren-voss",
+      "name": "Maren Voss",
+      "aliases": ["Councillor Voss", "the Grey Councillor"],
+      "role": "antagonist",
+      "description": "Head of the academy council, who wants the lanterns' memories sealed for good.",
+      "firstAppearance": 5,
+      "affiliations": ["academy-council"],
+      "relationships": [
+        { "target": "oren-hale", "type": "old colleague" },
+        { "target": "theo-marsh", "type": "protégé" },
+        { "target": "alice-kim", "type": "troublemaker" }
+      ],
+      "spoilers": ["She sealed the Night Wing twenty years ago."],
+      "fate": "Removed from the council and arrested after the hearing in chapter 58."
+    },
+    {
+      "id": "ms-lune",
+      "name": "Ms. Lune",
+      "aliases": ["the Lamplighter"],
+      "role": "supporting",
+      "description": "A traveling lamplighter who keeps turning up wherever Alice goes, always with advice Alice didn't ask for.",
+      "firstAppearance": 12,
+      "affiliations": ["lamplighters-guild"],
+      "relationships": [
+        { "target": "alice-kim", "type": "daughter", "spoiler": true },
+        { "target": "oren-hale", "type": "former teacher", "spoiler": true }
+      ],
+      "spoilers": ["Her real name is Selene Kim. She is Alice's mother."],
+      "fate": "Reunites with Alice after the Night Wing is reopened."
+    },
+    {
+      "id": "pip",
+      "name": "Pip",
+      "aliases": ["the archive cat"],
+      "role": "minor",
+      "description": "The archive's cat, who sleeps on whichever lantern is warmest.",
+      "firstAppearance": 1
+    }
+  ],
+  "locations": [
+    {
+      "id": "lantern-archive",
+      "name": "The Lantern Archive",
+      "region": "Vell Academy",
+      "description": "Five floors of shelved lanterns beneath the academy library, run by Professor Hale.",
+      "firstAppearance": 1
+    },
+    {
+      "id": "east-dormitory",
+      "name": "East Dormitory",
+      "region": "Vell Academy",
+      "description": "Where Alice and Juno share a drafty attic room.",
+      "firstAppearance": 2
+    },
+    {
+      "id": "night-wing",
+      "name": "The Night Wing",
+      "region": "Vell Academy",
+      "description": "A sealed wing below the archive that doesn't appear on any map.",
+      "firstAppearance": 39,
+      "spoilers": ["It holds the founders' lantern."]
+    },
+    {
+      "id": "port-calder",
+      "name": "Port Calder",
+      "region": "Calder Coast",
+      "description": "The harbor town below the academy, where the Lamplighters' Guild keeps its hall.",
+      "firstAppearance": 12
+    }
+  ],
+  "factions": [
+    {
+      "id": "vell-academy",
+      "name": "Vell Academy",
+      "description": "A cliffside school for archivists, alchemists, and lamplighters.",
+      "firstAppearance": 1
+    },
+    {
+      "id": "academy-council",
+      "name": "The Academy Council",
+      "aliases": ["the council"],
+      "leader": "maren-voss",
+      "description": "Seven councillors who run the academy and control who may enter the archive.",
+      "firstAppearance": 5,
+      "spoilers": ["The council broke the founders' charter decades ago."]
+    },
+    {
+      "id": "lamplighters-guild",
+      "name": "Lamplighters' Guild",
+      "aliases": ["the Guild"],
+      "description": "Keepers of the coast's lanterns, who believe memories belong to the people who made them.",
+      "firstAppearance": 12
+    }
+  ],
+  "items": [
+    {
+      "id": "lantern-reading",
+      "name": "Lantern Reading",
+      "kind": "ability",
+      "owner": "alice-kim",
+      "description": "Alice's ability to see a lantern's stored memories by touching its glass. Reading for too long leaves her with other people's feelings.",
+      "firstAppearance": 3
+    },
+    {
+      "id": "memory-lantern",
+      "name": "Memory Lantern",
+      "kind": "item",
+      "description": "A lantern that slowly stores the memories of whoever carries it.",
+      "firstAppearance": 1
+    },
+    {
+      "id": "archive-key",
+      "name": "Brass Archive Key",
+      "kind": "artifact",
+      "owner": "oren-hale",
+      "description": "Opens every door in the archive except one.",
+      "firstAppearance": 4,
+      "spoilers": ["The one door it can't open leads to the Night Wing."]
+    },
+    {
+      "id": "founders-lantern",
+      "name": "The Founders' Lantern",
+      "kind": "artifact",
+      "description": "The oldest lantern in the archive, missing from every catalogue.",
+      "firstAppearance": 39,
+      "spoilers": ["It records the council breaking the founders' charter."]
+    }
+  ],
+  "glossary": [
+    {
+      "id": "wick-oath",
+      "name": "Wick Oath",
+      "description": "The promise every lamplighter makes never to read a lantern without permission.",
+      "firstAppearance": 12
+    },
+    {
+      "id": "dimming",
+      "name": "Dimming",
+      "description": "When a lantern's memories fade from neglect. A dimmed lantern can't be read.",
+      "firstAppearance": 6
+    },
+    {
+      "id": "keeper",
+      "name": "Keeper",
+      "description": "The archivist responsible for the whole Lantern Archive.",
+      "firstAppearance": 1
+    }
+  ],
+  "arcs": [
+    {
+      "id": "arrival",
+      "name": "Arrival",
+      "chapterStart": 1,
+      "chapterEnd": 15,
+      "summary": "Alice settles into Vell Academy, meets Juno and Theo, and learns to read lanterns safely under Professor Hale.",
+      "spoilers": ["The memory Alice reads in chapter 14 shows Ms. Lune as a Vell student."]
+    },
+    {
+      "id": "missing-pages",
+      "name": "Missing Pages",
+      "chapterStart": 16,
+      "chapterEnd": 38,
+      "summary": "Alice, Juno, and Theo track missing years in the archive's records while the council bans students from reading lanterns."
+    },
+    {
+      "id": "night-wing",
+      "name": "The Night Wing",
+      "chapterStart": 39,
+      "chapterEnd": 60,
+      "summary": "The trio finds the sealed wing beneath the archive and brings what they learn to a public council hearing.",
+      "spoilers": ["Hale's sealed lantern restores his memories of the Night Wing.", "Voss is arrested after the hearing."]
+    }
+  ],
+  "chapters": [
+    { "number": 1, "title": "The Scholarship", "summary": "Alice arrives at Vell Academy and is assigned to the archive." },
+    { "number": 2, "title": "Attic Room", "summary": "Alice meets her roommate Juno, who fixes the broken window with glue." },
+    { "number": 3, "title": "First Light", "summary": "Under Hale's supervision, Alice reads her first lantern." },
+    { "number": 12, "title": "The Lamplighter", "summary": "A lamplighter named Ms. Lune walks Alice home through Port Calder." },
+    { "number": 14, "title": "An Old Face", "summary": "A memory shows Ms. Lune decades younger, wearing a Vell uniform." },
+    { "number": 16, "title": "Missing Years", "summary": "Alice notices that no lanterns exist from a twelve-year stretch of the academy's history." },
+    { "number": 22, "title": "The Ban", "summary": "The council bans students from reading lanterns." },
+    { "number": 39, "title": "Below the Shelves", "summary": "Theo finds a door behind the lowest shelf that Hale's key can't open." },
+    { "number": 58, "title": "The Hearing", "summary": "Alice reads the founders' lantern in front of the whole academy." },
+    { "number": 60, "title": "Keeper", "summary": "Alice is named keeper of the archive." }
+  ],
+  "timeline": [
+    { "chapter": 1, "title": "Alice arrives at Vell Academy" },
+    { "chapter": 3, "title": "Alice's first lantern reading" },
+    { "chapter": 12, "title": "Alice meets Ms. Lune in Port Calder" },
+    { "chapter": 22, "title": "The council bans lantern reading" },
+    { "chapter": 39, "title": "The Night Wing door is found" },
+    { "chapter": 41, "title": "Hale's memories return", "description": "Opening his sealed lantern gives Hale back everything he knew about the Night Wing.", "spoiler": true },
+    { "chapter": 47, "title": "Ms. Lune reveals she is Alice's mother", "spoiler": true },
+    { "chapter": 58, "title": "The council hearing", "description": "Alice reads the founders' lantern and Voss is arrested.", "spoiler": true },
+    { "chapter": 60, "title": "Alice becomes keeper", "spoiler": true }
+  ],
+  "generatedBy": { "provider": "manual" },
+  "createdAt": "2026-10-03T12:00:00Z",
+  "updatedAt": "2026-10-03T12:00:00Z"
+}
