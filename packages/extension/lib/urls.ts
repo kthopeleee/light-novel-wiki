@@ -46,10 +46,16 @@ export function proposePrefix(raw: string): string {
     keep.push(segment);
     if (!GENERIC_SEGMENTS.has(segment.toLowerCase())) break;
   }
-  // If that used up the whole path, the last segment is this page itself, not the novel.
-  if (keep.length === segments.length) keep.pop();
+  // If that used up the whole path and the last part names a chapter ("chapter-5"), it's
+  // this page rather than the novel. A novel's own page ("/cote", "/harbor-ledger/") stays.
+  const last = keep.at(-1);
+  if (keep.length === segments.length && last && !url.pathname.endsWith("/") && CHAPTER_SEGMENT.test(last)) {
+    keep.pop();
+  }
   return `${url.origin}/${keep.length ? `${keep.join("/")}/` : ""}`;
 }
+
+const CHAPTER_SEGMENT = /chapter|episode|prologue|epilogue|^(ch|ep|c|part)?[-_.]?\d+(\.\d+)?$/i;
 
 export function matchesPrefix(url: string, prefix: string): boolean {
   const normalized = normalizeUrl(url);

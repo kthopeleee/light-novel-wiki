@@ -344,3 +344,16 @@ body.popup {
   padding-top: 8px;
   border-top: 1px solid var(--border);
 }
+
+.progress {
+  height: 8px;
+  border-radius: 999px;
+  background: var(--surface-2);
+  overflow: hidden;
+}
+
+.progress__bar {
+  height: 100%;
+  background: var(--accent);
+  transition: width 200ms;
+}

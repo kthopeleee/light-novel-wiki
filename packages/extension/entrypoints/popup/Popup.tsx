@@ -1,9 +1,10 @@
 import { useCallback, useEffect, useState, type FormEvent } from "react";
 import { browser } from "wxt/browser";
+import { findChapterLinks, MIN_LIST_LINKS, type CollectPlan, type LinkInfo } from "../../lib/collect";
 import { findNovelForUrl, hasChapter, updateNovel, type LibraryNovel } from "../../lib/library";
 import { send, type CaptureReply, type Message, type PendingNovel, type SetupReply } from "../../lib/messages";
 import { guessNovelTitle } from "../../lib/titles";
-import { isWebPage, proposePrefix, sitePattern } from "../../lib/urls";
+import { isWebPage, normalizeUrl, proposePrefix, sitePattern } from "../../lib/urls";
 import { useLibraryChanges } from "../../lib/useLibraryChanges";
 
 type TabInfo = { id: number; url: string; title: string };
@@ -175,6 +176,31 @@ function NovelStatus({
     await onChange();
   };
 
+  const collectAll = async () => {
+    onNote(null);
+    try {
+      const [result] = await browser.scripting.executeScript({
+        target: { tabId: tab.id },
+        func: () =>
+          [...document.querySelectorAll("a[href]")].map((a) => ({
+            href: (a as HTMLAnchorElement).href,
+            text: (a.textContent ?? "").trim().slice(0, 200),
+          })),
+      });
+      const links = (result?.result ?? []) as LinkInfo[];
+      const prefix = novel.sitePrefix!;
+      const urls = findChapterLinks(links, prefix, tab.url);
+      const plan: CollectPlan =
+        urls.length >= MIN_LIST_LINKS
+          ? { novelId: novel.id, prefix, mode: "list", urls }
+          : { novelId: novel.id, prefix, mode: "next", startUrl: normalizeUrl(tab.url) };
+      await browser.storage.local.set({ [`collectPlan:${novel.id}`]: plan });
+      openLibrary(novel.id, "collect");
+    } catch (err) {
+      onNote(`Couldn't read this page: ${String(err)}`);
+    }
+  };
+
   const grant = () => {
     browser.permissions
       .request({ origins: [sitePattern(tab.url)] })
@@ -219,12 +245,18 @@ function NovelStatus({
           See chapters
         </button>
       </div>
+      {hasAccess && (
+        <button type="button" className="button" onClick={() => void collectAll()}>
+          Collect all chapters…
+        </button>
+      )}
     </section>
   );
 }
 
-function openLibrary(novelId?: string) {
-  const url = browser.runtime.getURL(`/library.html${novelId ? `#/novel/${encodeURIComponent(novelId)}` : ""}`);
+function openLibrary(novelId?: string, subpage?: "collect") {
+  const hash = novelId ? `#/novel/${encodeURIComponent(novelId)}${subpage ? `/${subpage}` : ""}` : "";
+  const url = browser.runtime.getURL(`/library.html${hash}`);
   void browser.tabs.create({ url });
   window.close();
 }

@@ -9,6 +9,7 @@ export default defineConfig({
   // MV3 everywhere, including Firefox, so both use the same scripting and permissions APIs.
   manifestVersion: 3,
   outDir: testBuild ? ".output-test" : ".output",
+  vite: () => ({ define: { __LNW_TEST__: JSON.stringify(testBuild) } }),
   manifest: ({ browser }) => ({
     name: "Light Novel Wiki",
     description:

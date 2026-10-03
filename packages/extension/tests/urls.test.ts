@@ -16,6 +16,10 @@ describe("proposePrefix", () => {
     ["https://example.com/harbor-ledger/chapter-3", "https://example.com/harbor-ledger/"],
     ["https://example.com/chapter-5", "https://example.com/"],
     ["https://example.com/?chapter=5", "https://example.com/"],
+    ["https://example.com/harbor-ledger/", "https://example.com/harbor-ledger/"],
+    ["https://novels-reader.pages.dev/cote", "https://novels-reader.pages.dev/cote/"],
+    ["https://www.royalroad.com/fiction/12345/some-story", "https://www.royalroad.com/fiction/12345/"],
+    ["https://example.com/12345-night-market-notes", "https://example.com/12345-night-market-notes/"],
     ["http://localhost:4180/harbor-ledger/chapter-1", "http://localhost:4180/harbor-ledger/"],
   ])("%s → %s", (url, prefix) => {
     expect(proposePrefix(url)).toBe(prefix);

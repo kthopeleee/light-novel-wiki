@@ -13,6 +13,7 @@ import {
 } from "../../lib/library";
 import { send } from "../../lib/messages";
 import { useLibraryChanges } from "../../lib/useLibraryChanges";
+import { CollectPage } from "./Collect";
 
 function useHash(): string {
   const [hash, setHash] = useState(() => location.hash);
@@ -26,7 +27,7 @@ function useHash(): string {
 
 export function Library() {
   const hash = useHash();
-  const novelId = /^#\/novel\/(.+)$/.exec(hash)?.[1];
+  const [, novelId, subpage] = /^#\/novel\/([^/]+)(\/collect)?$/.exec(hash) ?? [];
   useEffect(() => {
     document.title = "Library · Light Novel Wiki";
   }, []);
@@ -38,7 +39,13 @@ export function Library() {
         </a>
       </header>
       <main className="container">
-        {novelId ? <NovelDetail key={novelId} id={decodeURIComponent(novelId)} /> : <NovelList />}
+        {novelId && subpage ? (
+          <CollectPage key={`${novelId}/collect`} id={decodeURIComponent(novelId)} />
+        ) : novelId ? (
+          <NovelDetail key={novelId} id={decodeURIComponent(novelId)} />
+        ) : (
+          <NovelList />
+        )}
       </main>
     </div>
   );
@@ -144,6 +151,15 @@ function NovelDetail({ id }: { id: string }) {
       </div>
 
       <NovelSettings novel={novel} onSaved={load} />
+
+      {novel.source === "web" && (
+        <div className="row">
+          <a className="button" href={`#/novel/${encodeURIComponent(novel.id)}/collect`}>
+            Collect all chapters…
+          </a>
+          <span className="muted small">For stories published free by their authors.</span>
+        </div>
+      )}
 
       <section>
         <h2>Chapters</h2>
