@@ -1,5 +1,8 @@
+import { useState } from "react";
 import type { Arc, NovelWiki } from "@lnw/schema";
 import { Breadcrumb, Fact, Facts, Paragraphs } from "../../components/common";
+import { NEW_ID, upsertArc } from "../../editing/edit";
+import { AddLink, ArcEditor, EditButton, NotesPanel } from "../../editing/forms";
 import { href } from "../../router";
 import { Spoiler } from "../../spoilers";
 import { chapterRange, chaptersInArc, sortedArcs } from "../../wiki";
@@ -29,7 +32,10 @@ export function ArcBar({ wiki }: { wiki: NovelWiki }) {
 export function ArcList({ wiki }: { wiki: NovelWiki }) {
   return (
     <div className="stack">
-      <ArcBar wiki={wiki} />
+      <div className="list-actions">
+        <AddLink to={href("n", wiki.id, "arcs", NEW_ID)}>Add arc</AddLink>
+      </div>
+      {wiki.arcs.length === 0 ? <p className="muted">No arcs yet.</p> : <ArcBar wiki={wiki} />}
       <ol className="arc-list">
         {sortedArcs(wiki).map((arc, i) => (
           <li key={arc.id} className={`card arc-card arc-edge-${(i % 4) + 1}`}>
@@ -57,12 +63,26 @@ export function ArcList({ wiki }: { wiki: NovelWiki }) {
 }
 
 export function ArcDetail({ wiki, arc }: { wiki: NovelWiki; arc: Arc }) {
+  const [editing, setEditing] = useState(false);
+  if (editing) {
+    return (
+      <ArcEditor
+        wiki={wiki}
+        arc={arc}
+        onDone={(id) => (id ? setEditing(false) : (window.location.hash = href("n", wiki.id, "arcs")))}
+      />
+    );
+  }
+
   const chapters = chaptersInArc(wiki, arc);
   return (
     <article className="entry stack">
       <div>
         <Breadcrumb to={href("n", wiki.id, "arcs")} label="Arcs" />
-        <h2 className="entry__title">{arc.name}</h2>
+        <div className="section-heading">
+          <h2 className="entry__title">{arc.name}</h2>
+          <EditButton onClick={() => setEditing(true)} />
+        </div>
       </div>
       <Facts>
         <Fact label="Chapters">{chapterRange(arc).replace(/^Chapters? /, "")}</Fact>
@@ -73,6 +93,11 @@ export function ArcDetail({ wiki, arc }: { wiki: NovelWiki; arc: Arc }) {
           <Paragraphs text={arc.summary} />
         </section>
       )}
+      <NotesPanel
+        notes={arc.notes}
+        apply={(notes) => upsertArc(wiki, { ...arc, notes })}
+        subject={`the ${arc.name} arc (${wiki.title})`}
+      />
       {arc.spoilers.length > 0 && (
         <section>
           <h3>Spoilers</h3>

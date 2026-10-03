@@ -10,15 +10,16 @@ const siteDir = fileURLToPath(new URL("../../docs", import.meta.url));
 const dataDir = path.join(siteDir, "data");
 
 function wikiData(): Plugin {
-  let isBuild = false;
+  let cleanSiteDir = false;
   return {
     name: "wiki-data",
     configResolved(config) {
-      isBuild = config.command === "build";
+      // Test builds go elsewhere (--outDir) and must not touch the published site.
+      cleanSiteDir = config.command === "build" && path.resolve(config.root, config.build.outDir) === siteDir;
     },
     buildStart() {
       // Replace the previous build's files, but leave data/ and .nojekyll alone.
-      if (!isBuild) return;
+      if (!cleanSiteDir) return;
       rmSync(path.join(siteDir, "assets"), { recursive: true, force: true });
       rmSync(path.join(siteDir, "index.html"), { force: true });
     },

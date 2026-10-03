@@ -4,3 +4,6 @@ dist/
 .wxt/
 *.log
 .DS_Store
+
+# Local test scripts
+packages/*/.scratch-test/

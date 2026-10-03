@@ -6,6 +6,9 @@ import { Spoiler } from "../../spoilers";
 
 export function Relationships({ wiki }: { wiki: NovelWiki }) {
   const people = wiki.characters.filter((c) => c.relationships.length > 0);
+  if (people.length === 0) {
+    return <p className="muted">No relationships yet. Add them from a character's page with “Edit”.</p>;
+  }
   return (
     <div className="stack">
       <RelationshipMap wiki={wiki} />

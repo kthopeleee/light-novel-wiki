@@ -19,6 +19,8 @@ const entryFields = {
   firstAppearance: ChapterNumber.optional(),
   /** Twists about this entry. The viewer always hides these until revealed. */
   spoilers: z.array(z.string()).default([]),
+  /** The reader's own notes. "Update wiki" never touches these. */
+  notes: z.string().optional(),
   /** Set when an entry is fixed by hand, so "Update wiki" leaves it alone. */
   editedByHand: z.boolean().optional(),
 };
@@ -74,6 +76,8 @@ export const Arc = z.object({
   chapterEnd: ChapterNumber,
   summary: z.string().default(""),
   spoilers: z.array(z.string()).default([]),
+  notes: z.string().optional(),
+  editedByHand: z.boolean().optional(),
 });
 
 export const ChapterSummary = z.object({
@@ -117,6 +121,8 @@ export const NovelWiki = z.object({
   majorSpoilers: z.array(SpoilerItem).default([]),
   /** Missing while the story is ongoing. */
   ending: z.string().optional(),
+  /** The reader's own notes about the whole novel. */
+  notes: z.string().optional(),
   /** How many chapters the wiki was generated from. */
   chapterCount: z.number().int().nonnegative(),
   characters: z.array(Character).default([]),
@@ -169,6 +175,26 @@ export type Provider = z.infer<typeof Provider>;
 export type NovelWiki = z.infer<typeof NovelWiki>;
 export type WikiIndexEntry = z.infer<typeof WikiIndexEntry>;
 export type WikiIndex = z.infer<typeof WikiIndex>;
+
+/** Turns a name into an id: "Ms. Lune" → "ms-lune". */
+export function slugify(name: string): string {
+  const slug = name
+    .normalize("NFKD")
+    .replace(/[̀-ͯ]/g, "")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+  return slug || "entry";
+}
+
+/** An id for `name` that isn't already taken, e.g. "alice-kim-2". */
+export function uniqueSlug(name: string, taken: Iterable<string>): string {
+  const used = new Set(taken);
+  const base = slugify(name);
+  let slug = base;
+  for (let n = 2; used.has(slug); n++) slug = `${base}-${n}`;
+  return slug;
+}
 
 export function toIndexEntry(wiki: NovelWiki): WikiIndexEntry {
   const { id, title, author, sample, status, genres, premise, chapterCount, updatedAt } = wiki;

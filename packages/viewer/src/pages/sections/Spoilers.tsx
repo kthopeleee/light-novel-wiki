@@ -1,13 +1,21 @@
+import { useState } from "react";
 import type { NovelWiki } from "@lnw/schema";
 import { Paragraphs } from "../../components/common";
+import { EditButton, SpoilersEditor } from "../../editing/forms";
 import { href } from "../../router";
 import { Spoiler } from "../../spoilers";
 
 export function SpoilersPage({ wiki }: { wiki: NovelWiki }) {
+  const [editing, setEditing] = useState(false);
+  if (editing) return <SpoilersEditor wiki={wiki} onDone={() => setEditing(false)} />;
+
   const fates = wiki.characters.filter((c) => c.fate);
   return (
     <div className="stack">
-      <p className="note">Everything here stays hidden until you click it, unless “Show all spoilers” is on.</p>
+      <div className="section-heading">
+        <p className="note">Everything here stays hidden until you click it, unless “Show all spoilers” is on.</p>
+        <EditButton onClick={() => setEditing(true)}>Edit spoilers & ending</EditButton>
+      </div>
 
       <section>
         <h2>Major spoilers</h2>

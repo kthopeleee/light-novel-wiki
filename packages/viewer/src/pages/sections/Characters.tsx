@@ -1,5 +1,8 @@
+import { useState } from "react";
 import type { Character, NovelWiki } from "@lnw/schema";
 import { Breadcrumb, Fact, Facts, LinkList, Paragraphs, RelationshipLine } from "../../components/common";
+import { NEW_ID, upsertEntry } from "../../editing/edit";
+import { AddLink, EditButton, EntryEditor, NotesPanel } from "../../editing/forms";
 import { href } from "../../router";
 import { Spoiler } from "../../spoilers";
 import { ROLE_LABEL, ROLE_ORDER } from "../../wiki";
@@ -20,6 +23,10 @@ export function CharacterCard({ wiki, character: c }: { wiki: NovelWiki; charact
 export function CharacterList({ wiki }: { wiki: NovelWiki }) {
   return (
     <div className="stack">
+      <div className="list-actions">
+        <AddLink to={href("n", wiki.id, "characters", NEW_ID)}>Add character</AddLink>
+      </div>
+      {wiki.characters.length === 0 && <p className="muted">No characters yet.</p>}
       {ROLE_ORDER.map((role) => {
         const group = wiki.characters.filter((c) => c.role === role);
         if (group.length === 0) return null;
@@ -43,6 +50,18 @@ export function CharacterList({ wiki }: { wiki: NovelWiki }) {
 }
 
 export function CharacterDetail({ wiki, character: c }: { wiki: NovelWiki; character: Character }) {
+  const [editing, setEditing] = useState(false);
+  if (editing) {
+    return (
+      <EntryEditor
+        wiki={wiki}
+        kind="characters"
+        entry={c}
+        onDone={(id) => (id ? setEditing(false) : (window.location.hash = href("n", wiki.id, "characters")))}
+      />
+    );
+  }
+
   const openRelationships = c.relationships.filter((r) => !r.spoiler);
   const spoilerRelationships = c.relationships.filter((r) => r.spoiler);
   const owned = wiki.items.filter((i) => i.owner === c.id).map((i) => i.id);
@@ -53,7 +72,10 @@ export function CharacterDetail({ wiki, character: c }: { wiki: NovelWiki; chara
     <article className="entry stack">
       <div>
         <Breadcrumb to={href("n", wiki.id, "characters")} label="Characters" />
-        <h2 className="entry__title">{c.name}</h2>
+        <div className="section-heading">
+          <h2 className="entry__title">{c.name}</h2>
+          <EditButton onClick={() => setEditing(true)} />
+        </div>
       </div>
       <Facts>
         <Fact label="Role">
@@ -84,6 +106,12 @@ export function CharacterDetail({ wiki, character: c }: { wiki: NovelWiki; chara
           <Paragraphs text={c.description} />
         </section>
       )}
+
+      <NotesPanel
+        notes={c.notes}
+        apply={(notes) => upsertEntry(wiki, "characters", { ...c, notes })}
+        subject={`${c.name} (${wiki.title})`}
+      />
 
       {openRelationships.length > 0 && (
         <section>

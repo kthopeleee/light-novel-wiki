@@ -1,10 +1,15 @@
+import { useState } from "react";
 import type { NovelWiki, TimelineEvent } from "@lnw/schema";
+import { EditButton, TimelineEditor } from "../../editing/forms";
 import { Spoiler } from "../../spoilers";
 import { arcForChapter } from "../../wiki";
 
 const order = (e: TimelineEvent) => e.chapter ?? Number.MAX_SAFE_INTEGER;
 
 export function Timeline({ wiki }: { wiki: NovelWiki }) {
+  const [editing, setEditing] = useState(false);
+  if (editing) return <TimelineEditor wiki={wiki} onDone={() => setEditing(false)} />;
+
   const events = [...wiki.timeline].sort((a, b) => order(a) - order(b));
 
   // Group consecutive events under the arc they happen in.
@@ -18,6 +23,10 @@ export function Timeline({ wiki }: { wiki: NovelWiki }) {
 
   return (
     <div className="stack">
+      <div className="list-actions">
+        <EditButton onClick={() => setEditing(true)}>Edit timeline</EditButton>
+      </div>
+      {events.length === 0 && <p className="muted">No events yet.</p>}
       {groups.map((group, g) => (
         <section key={g}>
           {group.arcName && <h2>{group.arcName}</h2>}

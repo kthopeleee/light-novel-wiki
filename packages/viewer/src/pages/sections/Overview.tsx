@@ -1,11 +1,16 @@
+import { useState } from "react";
 import type { NovelWiki } from "@lnw/schema";
 import { Paragraphs } from "../../components/common";
+import { EditButton, NotesPanel, OverviewEditor } from "../../editing/forms";
 import { href } from "../../router";
 import { formatDate, PROVIDER_LABEL } from "../../wiki";
 import { ArcBar } from "./Arcs";
 import { CharacterCard } from "./Characters";
 
 export function Overview({ wiki }: { wiki: NovelWiki }) {
+  const [editing, setEditing] = useState(false);
+  if (editing) return <OverviewEditor wiki={wiki} onDone={() => setEditing(false)} />;
+
   const cast = (["protagonist", "main", "antagonist"] as const).flatMap((role) =>
     wiki.characters.filter((c) => c.role === role),
   );
@@ -19,12 +24,15 @@ export function Overview({ wiki }: { wiki: NovelWiki }) {
 
   return (
     <div className="stack">
-      {wiki.premise && (
-        <section>
+      <section>
+        <div className="section-heading">
           <h2>Premise</h2>
-          <Paragraphs text={wiki.premise} />
-        </section>
-      )}
+          <EditButton onClick={() => setEditing(true)}>Edit overview</EditButton>
+        </div>
+        {wiki.premise ? <Paragraphs text={wiki.premise} /> : <p className="muted">No premise yet.</p>}
+      </section>
+
+      <NotesPanel notes={wiki.notes} apply={(notes) => ({ ...wiki, notes })} subject={wiki.title} />
 
       <ul className="stats">
         {stats.map((s) => (
