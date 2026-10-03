@@ -7,3 +7,4 @@ dist/
 
 # Local test scripts
 packages/*/.scratch-test/
+.output-test/

@@ -176,25 +176,7 @@ export type NovelWiki = z.infer<typeof NovelWiki>;
 export type WikiIndexEntry = z.infer<typeof WikiIndexEntry>;
 export type WikiIndex = z.infer<typeof WikiIndex>;
 
-/** Turns a name into an id: "Ms. Lune" → "ms-lune". */
-export function slugify(name: string): string {
-  const slug = name
-    .normalize("NFKD")
-    .replace(/[̀-ͯ]/g, "")
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-+|-+$/g, "");
-  return slug || "entry";
-}
-
-/** An id for `name` that isn't already taken, e.g. "alice-kim-2". */
-export function uniqueSlug(name: string, taken: Iterable<string>): string {
-  const used = new Set(taken);
-  const base = slugify(name);
-  let slug = base;
-  for (let n = 2; used.has(slug); n++) slug = `${base}-${n}`;
-  return slug;
-}
+export { slugify, uniqueSlug } from "./slug";
 
 export function toIndexEntry(wiki: NovelWiki): WikiIndexEntry {
   const { id, title, author, sample, status, genres, premise, chapterCount, updatedAt } = wiki;

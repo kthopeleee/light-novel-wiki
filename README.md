@@ -41,10 +41,35 @@ The site is published from the `docs/` folder on the `main` branch. After changi
 the site's code, run `npm run build` and commit the updated `docs/` folder. Changes to
 wiki data (including edits made on the site) go live about a minute after they're pushed.
 
+## Browser extension
+
+The extension saves the chapters you read, on the sites you choose, into a library on
+your computer. Chapter text never leaves your browser.
+
+Build it for both browsers:
+
+```sh
+npm run build:extension
+```
+
+**Chrome:** open `chrome://extensions`, turn on **Developer mode**, click **Load unpacked**,
+and pick `packages/extension/.output/chrome-mv3`.
+
+**Firefox:** open `about:debugging#/runtime/this-firefox`, click **Load Temporary Add-on…**,
+and pick `packages/extension/.output/firefox-mv3/manifest.json`. Firefox removes temporary
+add-ons when it restarts; a permanent install needs the add-on signed by Mozilla.
+
+To use it, open a chapter of a novel, click the 📖 toolbar button, and choose **Start saving**.
+The browser asks for access to that one site. After that, every chapter you open there is saved.
+The **Library** page lists everything saved.
+
+Run its tests with `npm test`.
+
 ## Project layout
 
 ```
-packages/schema   # wiki data format, shared by everything
-packages/viewer   # the wiki website (also reused inside the extension later)
-docs/             # the published site and its data
+packages/schema     # wiki data format, shared by everything
+packages/viewer     # the wiki website
+packages/extension  # the browser extension (Chrome and Firefox)
+docs/               # the published site and its data
 ```
