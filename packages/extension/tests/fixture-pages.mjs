@@ -12,9 +12,9 @@ const SENTENCES = [
   "The archive smelled of dust, lamp oil, and the faint sweetness of old paper.",
 ];
 
-/** A paragraph of filler that differs per chapter and paragraph index. */
+/** A paragraph of filler. The "Entry" tag makes each one unique, so tests can tell them apart. */
 export function paragraph(chapter, index) {
-  const parts = [];
+  const parts = ["Entry " + chapter + "." + index + "."];
   for (let i = 0; i < 4; i++) parts.push(SENTENCES[(chapter * 3 + index * 5 + i) % SENTENCES.length]);
   return parts.join(" ");
 }

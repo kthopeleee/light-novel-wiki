@@ -16,7 +16,9 @@
   "dependencies": {
     "@lnw/schema": "*",
     "@mozilla/readability": "^0.6.0",
+    "fflate": "^0.8.3",
     "idb": "^8.0.3",
+    "pdfjs-dist": "^6.4.299",
     "react": "^19.3.0",
     "react-dom": "^19.3.0"
   },

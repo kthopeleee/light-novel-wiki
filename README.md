@@ -59,8 +59,16 @@ and pick `packages/extension/.output/chrome-mv3`.
 and pick `packages/extension/.output/firefox-mv3/manifest.json`. Firefox removes temporary
 add-ons when it restarts; a permanent install needs the add-on signed by Mozilla.
 
-To use it, open a chapter of a novel, click the 📖 toolbar button, and choose **Start saving**.
-The browser asks for access to that one site. After that, every chapter you open there is saved.
+Three ways to get chapters into the library:
+
+- **Save as you read.** Open a chapter, click the 📖 toolbar button, and choose **Start saving**.
+  The browser asks for access to that one site. After that, every chapter you open there is saved.
+- **Collect all chapters.** For stories their authors publish for free (Royal Road, Scribble Hub, …):
+  on a novel you're saving, click **Collect all chapters…**. It downloads one chapter every 1.5 seconds
+  from the chapter list, or by following "Next chapter" links. Sites that load chapters with JavaScript
+  can't be collected this way; use save-as-you-read there.
+- **Import an ebook.** On the **Library** page, choose a DRM-free EPUB or a PDF with real text.
+
 The **Library** page lists everything saved.
 
 Run its tests with `npm test`.

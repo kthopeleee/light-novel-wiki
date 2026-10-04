@@ -14,6 +14,7 @@ import {
 import { send } from "../../lib/messages";
 import { useLibraryChanges } from "../../lib/useLibraryChanges";
 import { CollectPage } from "./Collect";
+import { ImportBook } from "./Import";
 
 function useHash(): string {
   const [hash, setHash] = useState(() => location.hash);
@@ -77,7 +78,7 @@ function NovelList() {
           <p>Nothing saved yet.</p>
           <p className="muted">
             Open a chapter of a novel, click the 📖 Light Novel Wiki button in your browser's toolbar, and choose
-            “Start saving”. Every chapter you read after that is saved here.
+            “Start saving”. Every chapter you read after that is saved here. Or import an ebook below.
           </p>
         </div>
       ) : (
@@ -102,6 +103,7 @@ function NovelList() {
           ))}
         </ul>
       )}
+      <ImportBook />
     </div>
   );
 }
